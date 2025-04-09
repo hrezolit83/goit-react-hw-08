@@ -11,7 +11,7 @@ import {
   selectContacts,
   selectIsLoading,
   selectIsError,
-} from "../../redux/contactsSlice";
+} from "../../redux/contacts/selectors";
 
 function App() {
   const dispatch = useDispatch();
