@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 import Layout from "../layout/Layout";
 import { refreshUser } from "../../redux/auth/operations";
+import NotFoundPage from "../../pages/notFoundPage/NotFoundPage";
 import "./App.css";
 
 const HomePage = lazy(() => import("../../pages/homePage/HomePage"));
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </Layout>
