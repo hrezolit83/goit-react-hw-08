@@ -1,38 +1,39 @@
-import "./App.css";
-import { useDispatch, useSelector } from "react-redux";
-import ContactForm from "../contact-form/ContactForm";
-import SearchBox from "../search-box/SearchBox";
-import ContactList from "../contact-list/ContactList";
-import { fetchContacts } from "../../redux/contactsOps";
 import { useEffect } from "react";
-import Loader from "../loader/Loader";
-import Error from "../error/Error";
-import {
-  selectContacts,
-  selectIsLoading,
-  selectIsError,
-} from "../../redux/contacts/selectors";
+import { lazy, Suspense } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import { selectIsRefreshing } from "../../redux/auth/selectors";
+import Layout from "../layout/Layout";
+import { refreshUser } from "../../redux/auth/operations";
+import "./App.css";
 
-function App() {
+const HomePage = lazy(() => import("../../pages/homePage/HomePage"));
+const RegisterPage = lazy(() =>
+  import("../../pages/registerPage/RegisterPage")
+);
+const LoginPage = lazy(() => import("../../pages/loginPage/LogiPage"));
+const ContactsPage = lazy(() => import("../../pages/contactsPage/CotactsPage"));
+
+export default function App() {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectIsError);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      {isLoading && <Loader>Loading message</Loader>}
-      {isError && <Error>Error message</Error>}
-      <SearchBox />
-      {contacts.length > 0 && <ContactList />}
-    </div>
+  return isRefreshing ? (
+    <strong>Getting user data please wait...</strong>
+  ) : (
+    <Layout>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+        </Routes>
+      </Suspense>
+    </Layout>
   );
 }
-
-export default App;
