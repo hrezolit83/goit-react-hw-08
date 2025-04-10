@@ -7,6 +7,8 @@ import Layout from "../layout/Layout";
 import { refreshUser } from "../../redux/auth/operations";
 import NotFoundPage from "../../pages/notFoundPage/NotFoundPage";
 import "./App.css";
+import PrivateRoute from "../PrivateRoute";
+import RestrictedRoute from "../RestrictedRoute";
 
 const HomePage = lazy(() => import("../../pages/homePage/HomePage"));
 const RegisterPage = lazy(() =>
@@ -30,9 +32,30 @@ export default function App() {
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/contacts" element={<ContactsPage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                component={<RegisterPage />}
+                redirectTo="/contacts"
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute
+                component={<LoginPage />}
+                redirectTo="/contacts"
+              />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
+            }
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
