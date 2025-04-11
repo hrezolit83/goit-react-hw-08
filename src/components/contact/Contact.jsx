@@ -2,11 +2,15 @@ import css from "./Contact.module.css";
 import { FaPhone, FaUser } from "react-icons/fa6";
 import { deleteContact } from "../../redux/contacts/operations";
 import { useDispatch } from "react-redux";
+import toast, { Toaster } from "react-hot-toast";
 
 const Contact = ({ contact }) => {
   const dispatch = useDispatch();
   const hendleDeleteContact = () => {
-    dispatch(deleteContact(contact.id));
+    dispatch(deleteContact(contact.id))
+      .unwrap()
+      .then(() => toast.success(`Successfully deleted ${contact.name}!`))
+      .catch(() => toast.error("Error! This didn't work."));
   };
 
   return (
@@ -23,6 +27,7 @@ const Contact = ({ contact }) => {
       <button className={css.btn} type="button" onClick={hendleDeleteContact}>
         Delete
       </button>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };
