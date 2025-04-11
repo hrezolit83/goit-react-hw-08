@@ -4,31 +4,40 @@ export default function HomePage() {
   return (
     <div>
       <PageTitle>
-        Task manager welcome page{" "}
+        Welcome to ContactBook — Your Personal Contact Manager!{" "}
         <span role="img" aria-label="Greeting icon">
-          💁‍♀️
+          👨‍💻
         </span>
       </PageTitle>
+      <hr />
+      <article>
+        <p>
+          Keep all your important contacts in one secure and convenient place.
+          Sign up now and start building your own digital contact book!
+        </p>
+        <p>
+          🔒 Private &amp; Secure Your data is safely stored — only you have
+          access to your contact list.
+        </p>
+        <p>
+          📝 Simple &amp; Easy to Use Add, edit, and organize contacts by
+          categories, tags, or personal notes.
+        </p>
+        <p>
+          📲 Accessible from Any Device Your contacts are always with you — on
+          your computer, tablet, or smartphone.
+        </p>
+      </article>
+
+      <hr />
+
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
-        asperiores eius nobis saepe quis voluptatibus facere expedita tempora,
-        hic similique natus minima fugit doloribus molestiae dolorum sed debitis
-        tempore consectetur repellat, accusantium aspernatur incidunt
-        doloremque. Quod doloribus beatae, molestiae voluptatibus, numquam
-        recusandae accusamus voluptatem aliquam, sed vero consectetur esse
-        harum?
+        👉 Create an account in seconds and start managing your contacts today!
       </p>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum et
-        illo non vel rerum odit, maxime, vitae dolorem molestiae error
-        cupiditate! Quasi eaque est provident voluptates adipisci? Cumque
-        quisquam laboriosam ullam, inventore ipsa ducimus quaerat dolorum natus
-        quasi amet ab earum vero, laborum cum quibusdam qui? Illo ab facere a
-        dolore, labore quisquam modi voluptatum esse nisi accusantium architecto
-        qui veritatis molestiae doloribus quas placeat, suscipit asperiores
-        fugiat quam sint perspiciatis ducimus! Officiis quam vel inventore fuga
-        dolorum, voluptatibus possimus.
-      </p>
+
+      <hr />
+
+      <p>&copy; 2025 Vitaliy Dyedukh. All rights reserved.</p>
     </div>
   );
 }
