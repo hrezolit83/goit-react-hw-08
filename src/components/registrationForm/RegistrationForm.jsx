@@ -11,7 +11,9 @@ export default function RegistrationForm() {
     dispatch(register(values))
       .unwrap()
       .then(() => toast.success("User successfully registered!"))
-      .catch(() => toast.error("Error! Uncorrect data."));
+      .catch(() =>
+        toast.error("Sorry! Password Min allowed lenght (7), Email min (13)")
+      );
     actions.resetForm();
   };
 

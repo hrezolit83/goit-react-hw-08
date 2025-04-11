@@ -10,7 +10,7 @@ export default function LoginForm() {
     dispatch(logIn(values))
       .unwrap()
       .then(() => toast.success("Successfully logged in"))
-      .catch(() => toast.error("Error! This didn't work."));
+      .catch(() => toast.error("Invalid login or password!"));
 
     actions.resetForm();
   };
